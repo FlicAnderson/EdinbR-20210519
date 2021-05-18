@@ -102,7 +102,7 @@ Source: [tl;drLegal](https://tldrlegal.com/license/mit-license)
 * Nextflow in a nutshell  
 * Rmarkdown and out...(puts)  
 * the aim: HTML output for samples
-* what I tried (aka the looping horror)
+* what I tried (aka )
 * what actually worked... 
 * what next? 
 * (other) questions?
@@ -200,41 +200,6 @@ Additional organism-specific data files: ie the pipeline can run without them, b
 </div>
 
 
-## Riboviz Workflow: Processing
-
-<div class="centered">
-```{r, out.width = "800"}
-knitr::include_graphics("https://raw.githubusercontent.com/FlicAnderson/LabTalk-riboviz-20210510/main/images/riboviz-workflow_processing-aligned.png")
-``` 
-</div>
-
-<div class="notes"> 
-
-Processing:  
-* Removing adapter sequences  
-* Remove UMIs (Unique Molecular Identifiers) & barcodes if present  
-* Demultiplex / Deduplicate reads if required  
-* Need to filter out contaminant reads  
-* Align reads to transcriptome   
-
-</div>
-
-
-## Riboviz Workflow: Processing
-
-<div class="centered">
-```{r, out.width = "800"}
-knitr::include_graphics("https://raw.githubusercontent.com/FlicAnderson/LabTalk-riboviz-20210510/main/images/riboviz-workflow_processing-ribogrid.png")
-``` 
-</div>
-
-<div class="notes">
-
-Storing data in really efficient .h5 format (hierarchical, like a file system w/ folders type of organisation)
-
-</div>
-
-
 ## Riboviz Workflow: Analysis
 
 <div class="centered">
@@ -293,9 +258,9 @@ As part of making riboviz more user-friendly, wanted to generate a per-sample .h
 
 </div>  
 
-# WfMS
+# Workflow Management Systems (WfMS) & Nextflow
 
-## Workflow Management Systems
+## Workflow Management Systems 
 
 Workflow Management Systems (WfMS) provide infrastructure to set up, run & monitor a defined set of tasks (processes). 
 
@@ -307,7 +272,7 @@ Workflow Management Systems (WfMS) provide infrastructure to set up, run & monit
  
  * **easily shareable workflow scripts**  
  
-Some examples are: Snakemake, Toil, cwltool and Nextflow
+Some examples are: Snakemake, Toil, cwltool and **Nextflow**
 
 
 <div class="notes">   
@@ -322,7 +287,7 @@ Some examples are: Snakemake, Toil, cwltool and Nextflow
 
 * can share your workflow more easily as it includes specification details as well as describing the workflow  
 
-* many WfMS let you re-run certain steps of a workflow if something has changed or broken, without needing to re-run ALL parts  
+* many WfMS let you re-run certain steps of a workflow if something has changed or broken, without needing to re-run ALL parts ('re-entrancy')  
 
 My colleagues involved on riboviz wrote a paper on how we selected the right workflow management system for the project: https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1008622  
 
@@ -333,20 +298,17 @@ A Workflow Management System lets you join up all the tasks into one workflow, w
 
 </div>
 
+## Why not just use a script?
 
-
-## Why not just use a script? riboviz as a case study
-
-'riboviz' was previously controlled by a **python script** which ran other scripts (bash, python, R)
+'riboviz' _was_ previously controlled by a **python script** which ran other scripts (bash, python, R)
 
 _More complex pipeline -> more admin-related development time!_ 
 
 WfMS handle the admin-related tasks better (check **files exist**, create **log files**, queue & **run tasks efficiently**)
 
-_Rather than having to create **bespoke code**, we can now use existing Nextflow features_
+_Rather than creating **bespoke code**, we can use existing features_ - following scientific computing best practice: _"Re-use code instead of re-writing it"_  
 
-<font size="2">Jackson, Kavoussanakis & Wallace. (2021). Using prototyping to choose a bioinformatics workflow management system: https://doi.org/10.1371/journal.pcbi.1008622</font>
-
+<font size=2>Wilson et al. (2014) [Best Practices for Scientific Computing](https://doi.org/10.1371/journal.pbio.1001745). PLoS Biol 12(1): e1001745. </font>
 
 <div class="notes">
 
@@ -364,16 +326,18 @@ Think of a script which runs lots of separate functions to do different data ana
 
 </div>
 
-# Nextflow
 
 ## Nextflow
 
-* **parallelism** - processes are run as soon as their required input is there - no hanging around for unrelated tasks to finish! 
-* **portable** - can run a pipeline on local computer vs compute cluster without tweaking it  
-* **re-run option** - lets you re-run the pipeline from the last successful point if it stops
-* **simple syntax** so you can re-use existing scripts
-* you can use **containerisation** (such as docker/singularity) and **conda** to bundle and/or manage your environment
+Lots of Workflow Management System Benefits: 
 
+* **parallelism** -processes are run as soon as their required input is there - no hanging around for unrelated tasks to finish! 
+* **portable** - can run a pipeline on local computer vs compute cluster without tweaking it  
+* **resume option** - lets you re-run the pipeline from the last successful point if it stops ("re-entrancy")  
+* **simple syntax** so you can re-use existing scripts
+* you can use **containerisation** (such as docker/singularity) and **conda** to bundle and/or manage your software
+
+<font size="2">Jackson, Kavoussanakis & Wallace. (2021). [Using prototyping to choose a bioinformatics workflow management system](https://doi.org/10.1371/journal.pcbi.1008622)</font>  
 
 <div class="notes">  
 
@@ -465,48 +429,19 @@ Benefits:
 </div>
 
 
-## R Markdown Example
-<div class="centered">
-```{r, out.width = "425"}
-knitr::include_graphics("https://raw.githubusercontent.com/FlicAnderson/LabTalk-riboviz-20210510/main/images/rmarkdown_code.png")
-``` 
-</div>
 
-<div class="notes">
+# Adding Features to the Workflow  
 
-Features of Rmarkdown: 
-
-* YAML header (surrounded by 3 dashes in a row above & below)   
-* code blocks w/ run options (surrounded with back-ticks)  
-* text blocks (not surrounded with anything)  
-* markdown text formatting (use # for headings and _italics_ )
-
-Can load required packages, do calculations in-text, generate & display plots.  
-
-</div>
-
-## Rmarkdown Example
-<div class="centered">
-```{r, out.width = "500"}
-knitr::include_graphics("https://raw.githubusercontent.com/FlicAnderson/LabTalk-riboviz-20210510/main/images/rmarkdown_html-output.png")
-``` 
-</div>
-
-
-<div class="notes">  
-
-Example based on https://r4ds.had.co.nz/r-markdown.html
-
-</div>
-
-# Feature Development
 
 ## Riboviz HTML output 
 
 Aim: _**per-sample .html pages** with all existing plots_, to allow scrolling through & easier comparison.   
 
-* easier to **keep track** of which sample outputs you're viewing
+Could generate multiple plots in 1 PDF, but other benefits of HTML 'report':   
+
+* easier to **keep track** of which sample outputs you're viewing  
 * **speeds up QC** process after a riboviz run has completed   
+* easier to **view** - can open in browser
 * **easier to test** 1 .html file exists per sample vs many .pdfs
 * helps in **communicating outputs** between colleagues - no more unwieldy .zips
 
@@ -577,57 +512,10 @@ How to run from commandline? This was needed before it'd be integratable w/ Next
 
 </div>
 
-## Initial Attempts (CODE CHUNKS)
-
-<div class="centered">
-```{r, out.width = "1100"}
-knitr::include_graphics("https://raw.githubusercontent.com/FlicAnderson/LabTalk-riboviz-20210510/main/images/initial_code-chunks-rscript.png")
-``` 
-</div>
-_(rscripts/generate_stats_figs_markdown.R)_
-
-<font size="2">
-Line 194: comment in knitr format gives name of code chunk   
-Line 197: **calculates** data required for three nucleotide periodicity plot  
-Line 200: runs the plot code & **creates plot object** _three_nucleotide_periodicity_plot_  
-Line 202: knitr comment 'ends' code chunk   
-</font>
-
-
-
-## Initial Attempts (CODE CHUNKS)
-
-<div class="start">
-```{r, out.width = "600"}
-knitr::include_graphics("https://raw.githubusercontent.com/FlicAnderson/LabTalk-riboviz-20210510/main/images/initial_code-chunks-rmarkdown_read-chunk.png")
-``` 
-</div> 
-
-<div class="start">
-```{r, out.width = "500"}
-knitr::include_graphics("https://raw.githubusercontent.com/FlicAnderson/LabTalk-riboviz-20210510/main/images/initial_code-chunks-rmarkdown_3NT.png")
-``` 
-</div>
-<font size="2">
-Line 149: tells script which file we're reading named chunks of code from  
-Line 174: **running the code chunk** for 3nt periodicity to calculate & generate three_nucleotide_periodicity_plot  
-Line 176: display plot 
-</font>
-
-
-<div class="notes">  
-
-It's not immediately clear in the code what's happening, and no idea what's included in that block, so would need to trace it back in the other script. 
-
-Could lead to errors if we can't see what's going on. 
-
-Eventually realised that this was an unnecessarily difficult & complicated method of trying to achieve some plots in .html. 
-
-</div>
 
 ## The Solution: 
 
-1) Edit `Plot()` functions to ONLY PLOT _(no data-wrangling!)_  
+1) Edit `Plot()` functions for more cohesion _(no data-wrangling!)_  
 1) Create .tsv files containing data required for plotting 
 1) Create **new Nextflow process** `staticHTML` to 'plumb in' the feature (runs once per sample) 
 1) Pass correct **parameters** from Nextflow into .Rmd command  
@@ -803,10 +691,10 @@ Same as .pdf version previously output, but now have it clearly associated w/ pr
 
 * Rutgers team have developed **Shiny** code which can generate **interactive plots** (with user value inputs or sample selections) 
 
-* _Shiny code can't be run as part of a Nextflow workflow_   
+* _Shiny code can't be run as part of a Nextflow workflow_ - kicks up a 'server' that prevents processes completing
 
 * Adapting riboviz to generate a **'helper script'**:  
-  - lets users generate the Shiny run command with correct inputs & file paths added-in from Nextflow  
+  - lets users generate the Shiny run command with _correct inputs & file paths_ added-in from Nextflow  
 
 <div class="notes">
 
@@ -816,33 +704,63 @@ Same as .pdf version previously output, but now have it clearly associated w/ pr
 
 </div>
 
+## helperViz Nextflow process
 
-## Riboviz Shiny output 
+<div class="centered">
+```{r, out.width = "800"}
+knitr::include_graphics("https://raw.githubusercontent.com/FlicAnderson/EdinbR-20210519/main/images/nextflow-process_helperViz.png")
+``` 
+</div> 
 
+<font size="2">
+Line 1221-1223: builds 'script' from: Rscript command (to run R script in commandline), shiny R script & config file   
+Line 1225: puts the script command (with correct paths) into new file 'interactive_viz.sh'  
+</font>
+
+<div class="notes">
+
+Line 1214: starts the Nextflow process definition  
+
+Line 1215: sets output location for files 
+
+Line 1217: list input file (currently just config yaml)
+
+Line 1219: tells Nextflow what the outputs of this process are (1x shell script file )  
+
+Line 1221-1223: builds 'script' from: Rscript command (to run R script in commandline), shiny R script, config file 
+
+Line 1225: actually executes the script (runs the echo command to put the script with correct parameters into new file 'interactive_viz.sh') 
+
+</div>
+
+
+## Riboviz Shiny Output
+
+Now we can:   
+ * **run riboviz** as normal  
+ * execute the **helper script**   
+ * which runs the **Shiny code**   
+ * ... to obtain **interactive visualization** goodness!  
+
+We're still not quite finished the Shiny code - adding new plots, tweaking interactivity controls 
+
+Users now have a hassle-free **no-editing-required** option for interactive plots based on riboviz analysis outputs
+
+Lets them further **explore their data**, view specific samples / plots according to their interests
 
 
 <div class="notes">
 ... slide notes ...
 </div>
 
-## Initial Attempts (Shiny)
 
+## Riboviz Shiny Output Example
 
-
-
-<div class="notes">
-... slide notes ...
-</div>   
-
-
-
-## The Solution (Shiny)
-
-
-
-<div class="notes">
-* helper script required. 
-</div>
+<div class="centered">
+```{r, out.width = "600"}
+knitr::include_graphics("https://raw.githubusercontent.com/FlicAnderson/EdinbR-20210519/main/images/riboviz-output_shiny.png")
+``` 
+</div> 
 
 
 ## Lessons Learned
@@ -855,7 +773,7 @@ Good reminder of how important it is to make sure your function will **do 1 thin
 
 Also why it's vital to stick to **"don't repeat yourself (or others!)"**
 
-Interesting to learn about **adding new processes to Nextflow** & more about how it handles files
+**Shiny won't run in your Nextflow pipeline** but Nextflow can still help you with the file/parameter admin!
 
 
 <div class="notes">
@@ -863,31 +781,6 @@ Interesting to learn about **adding new processes to Nextflow** & more about how
 </div>
 
 
-## Takeaway for lab folks:  
-
-**WfMS are good** and reduce admin-related development!  
-
-_But if you're not building really complex stacks of code, think smaller:_ 
-
-Can get many of the same benefits (increased **reproducibility**, **ease of use**, **shareability**) with **scripts** if you're not already using one. 
-
-* **Rmarkdown documents** for data exploration and analysis are great!  
-  - load your libraries & data (include **what & where**)  
-  - **make plots & notes in the same place**  
-  - explore output types available
-
-
-
-
-<div class="notes">  
-
-Tips for getting your code to work on your colleague's system! 
- - version control!
- - remember which packages/software are required & may need to be installed 
- - use package::function() in R :) 
- - dependencies might still sink you, but there is hope (containerisation, rEnv, being specific about which version of everything YOU used etc)  
- - be clear about file management (where do you expect the data files to be saved? did you write that down?)
-</div>
 
 ## Thanks/Acknowledgements
 
@@ -918,6 +811,56 @@ Kostas Kavousannakis, Mike Jackson, Junchen Liu
 
 # The End
 
+<!-- ################################################# -->
+
+## Initial Attempts (CODE CHUNKS)
+
+<div class="centered">
+```{r, out.width = "1100"}
+knitr::include_graphics("https://raw.githubusercontent.com/FlicAnderson/LabTalk-riboviz-20210510/main/images/initial_code-chunks-rscript.png")
+``` 
+</div>
+_(rscripts/generate_stats_figs_markdown.R)_
+
+<font size="2">
+Line 194: comment in knitr format gives name of code chunk   
+Line 197: **calculates** data required for three nucleotide periodicity plot  
+Line 200: runs the plot code & **creates plot object** _three_nucleotide_periodicity_plot_  
+Line 202: knitr comment 'ends' code chunk   
+</font>
+
+
+
+## Initial Attempts (CODE CHUNKS)
+
+<div class="start">
+```{r, out.width = "600"}
+knitr::include_graphics("https://raw.githubusercontent.com/FlicAnderson/LabTalk-riboviz-20210510/main/images/initial_code-chunks-rmarkdown_read-chunk.png")
+``` 
+</div> 
+
+<div class="start">
+```{r, out.width = "500"}
+knitr::include_graphics("https://raw.githubusercontent.com/FlicAnderson/LabTalk-riboviz-20210510/main/images/initial_code-chunks-rmarkdown_3NT.png")
+``` 
+</div>
+<font size="2">
+Line 149: tells script which file we're reading named chunks of code from  
+Line 174: **running the code chunk** for 3nt periodicity to calculate & generate three_nucleotide_periodicity_plot  
+Line 176: display plot 
+</font>
+
+
+<div class="notes">  
+
+It's not immediately clear in the code what's happening, and no idea what's included in that block, so would need to trace it back in the other script. 
+
+Could lead to errors if we can't see what's going on. 
+
+Eventually realised that this was an unnecessarily difficult & complicated method of trying to achieve some plots in .html. 
+
+</div>
+
 
 ## Takeaway for pipeline builders: 
 
@@ -933,6 +876,99 @@ If you realise you're spending more time on managing 'task admin' in your develo
 
 </div>
 
+
+## R Markdown Example
+<div class="centered">
+```{r, out.width = "425"}
+knitr::include_graphics("https://raw.githubusercontent.com/FlicAnderson/LabTalk-riboviz-20210510/main/images/rmarkdown_code.png")
+``` 
+</div>
+
+<div class="notes">
+
+Features of Rmarkdown: 
+
+* YAML header (surrounded by 3 dashes in a row above & below)   
+* code blocks w/ run options (surrounded with back-ticks)  
+* text blocks (not surrounded with anything)  
+* markdown text formatting (use # for headings and _italics_ )
+
+Can load required packages, do calculations in-text, generate & display plots.  
+
+</div>
+
+## Rmarkdown Example
+<div class="centered">
+```{r, out.width = "500"}
+knitr::include_graphics("https://raw.githubusercontent.com/FlicAnderson/LabTalk-riboviz-20210510/main/images/rmarkdown_html-output.png")
+``` 
+</div>
+
+
+<div class="notes">  
+
+Example based on https://r4ds.had.co.nz/r-markdown.html
+
+</div>
+
+## Riboviz Workflow: Processing
+
+<div class="centered">
+```{r, out.width = "800"}
+knitr::include_graphics("https://raw.githubusercontent.com/FlicAnderson/LabTalk-riboviz-20210510/main/images/riboviz-workflow_processing-aligned.png")
+``` 
+</div>
+
+<div class="notes"> 
+
+Processing:  
+* Removing adapter sequences  
+* Remove UMIs (Unique Molecular Identifiers) & barcodes if present  
+* Demultiplex / Deduplicate reads if required  
+* Need to filter out contaminant reads  
+* Align reads to transcriptome   
+
+</div>
+
+
+## Riboviz Workflow: Processing
+
+<div class="centered">
+```{r, out.width = "800"}
+knitr::include_graphics("https://raw.githubusercontent.com/FlicAnderson/LabTalk-riboviz-20210510/main/images/riboviz-workflow_processing-ribogrid.png")
+``` 
+</div>
+
+<div class="notes">
+
+Storing data in really efficient .h5 format (hierarchical, like a file system w/ folders type of organisation)
+
+</div>
+
+
+## Takeaway for lab folks:  
+
+**WfMS are good** and reduce admin-related development!  
+
+_But if you're not building really complex stacks of code, think smaller:_ 
+
+Can get many of the same benefits (increased **reproducibility**, **ease of use**, **shareability**) with **scripts** if you're not already using one. 
+
+* **Rmarkdown documents** for data exploration and analysis are great!  
+  - load your libraries & data (include **what & where**)  
+  - **make plots & notes in the same place**  
+  - explore output types available
+
+
+<div class="notes">  
+
+Tips for getting your code to work on your colleague's system! 
+ - version control!
+ - remember which packages/software are required & may need to be installed 
+ - use package::function() in R :) 
+ - dependencies might still sink you, but there is hope (containerisation, rEnv, being specific about which version of everything YOU used etc)  
+ - be clear about file management (where do you expect the data files to be saved? did you write that down?)
+</div>
 
 ## Features of Ribosome Profiling Data
 
