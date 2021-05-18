@@ -121,7 +121,7 @@ https://edcarp.github.io/ - Edinburgh Carpentries, local chapter of The Carpentr
 * the aim: HTML output for samples
 * what I tried (aka the looping horror)
 * what actually worked... 
-* and next, make it Shiny!
+* what next? Make it Shiny!
 * (other) questions?
 
 # Intro:
@@ -152,7 +152,7 @@ _More biological code, less programming code!_
 
 The project's aims are to apply software engineering techniques to create more robust & reliable code:
 
-<font size="2">riboviz at github: https://github.com/riboviz/riboviz</font>
+riboviz at github: https://github.com/riboviz/riboviz
 
 <div class="notes">
 
