@@ -130,7 +130,7 @@ https://edcarp.github.io/ - Edinburgh Carpentries, local chapter of The Carpentr
 
 **Riboviz is open source software which processes & analyses ribosome profiling (sequencing) data**  
 
-*Developed in collaborative project BBSRC-NSF funded project involving:* University of Edinburgh, EPCC, Rutgers University and University of California, Berkeley. 
+*Developed in collaborative project BBSRC-NSF funded project*
 
 Ribosome profiling data helps unlock details of **translation**:   
 _how the cell creates proteins from genetic code (DNA, RNA)._ 
@@ -159,45 +159,6 @@ riboviz at github: https://github.com/riboviz/riboviz
 more researcher time: rather than tinkering with pipelines & bespoke analysis code…  
 
 Robust & reliable code gives more confidence in results
-
-</div>
-
-## Ribosome Profiling Method 
-
-<div style="float: left; width: 70%;">
-```{r, out.width = "525"}
-knitr::include_graphics("https://raw.githubusercontent.com/FlicAnderson/EdinbR-20210519/main/images/Ingolia2014_polysomes-to-footprints.png")
-```
-<font size="2">Ingolia et al. 2009</font>
-</div>
-
-<div style="float: right; width: 30%;">
-+ Experimental steps create snippets of **sequence data**
-+ Need to **process** sequence reads to 'undo' the experimental steps 
-+ **Analyse** to get plots & information
-+  **=> riboviz time!**
-</div>
-
-<div class="notes">
-
-Ribosome Profiling Method involves many experimental steps. 
-
-Processing this data involves effectively trying to 'undo' these steps to get at the meaning of what's happening in those cells.
-
-Sequencing 'reads' are the data we're working with.
-
-Take these reads & submit to further processing & analysis to get plots & information.
-
-That’s where riboviz comes in!
-
-Processing:
-Multiple steps using a range of other tools ‘plumbed-in’.
-
-Analysis:
-Analyse & quantify data: 
-Create outputs (including for quality-control, further analysis)
-
-Ingolia NT, Ghaemmaghami S, Newman JR, Weissman JS (2009). "Genome-wide analysis in vivo of translation with nucleotide resolution using ribosome profiling". Science. 324 (5924): 218–23. doi:10.1126/science.1168978
 
 </div>
 
@@ -454,13 +415,12 @@ Benefits:
 
 Aim: _**per-sample .html pages** with all existing plots_, to allow scrolling through & easier comparison.   
 
-Could generate multiple plots in 1 PDF, but other benefits of HTML 'report':   
+Benefits of HTML 'report':   
 
 * easier to **keep track** of which sample outputs you're viewing  
 * **speeds up QC** process after a riboviz run has completed   
-* easier to **view** - can open in browser
-* **easier to test** 1 .html file exists per sample vs many .pdfs
-* helps in **communicating outputs** between colleagues - no more unwieldy .zips
+* helps in **communicating outputs** between colleagues - no more unwieldy .zips 
+* can **integrate text** with plots
 
 Began development of [riboviz issue #193](https://github.com/riboviz/riboviz/issues/193): _August 2020_
 
@@ -880,6 +840,46 @@ It's not immediately clear in the code what's happening, and no idea what's incl
 Could lead to errors if we can't see what's going on. 
 
 Eventually realised that this was an unnecessarily difficult & complicated method of trying to achieve some plots in .html. 
+
+</div>
+
+
+## Ribosome Profiling Method 
+
+<div style="float: left; width: 70%;">
+```{r, out.width = "525"}
+knitr::include_graphics("https://raw.githubusercontent.com/FlicAnderson/EdinbR-20210519/main/images/Ingolia2014_polysomes-to-footprints.png")
+```
+<font size="2">Ingolia et al. 2009</font>
+</div>
+
+<div style="float: right; width: 30%;">
++ Experimental steps create snippets of **sequence data**
++ Need to **process** sequence reads to 'undo' the experimental steps 
++ **Analyse** to get plots & information
++  **=> riboviz time!**
+</div>
+
+<div class="notes">
+
+Ribosome Profiling Method involves many experimental steps. 
+
+Processing this data involves effectively trying to 'undo' these steps to get at the meaning of what's happening in those cells.
+
+Sequencing 'reads' are the data we're working with.
+
+Take these reads & submit to further processing & analysis to get plots & information.
+
+That’s where riboviz comes in!
+
+Processing:
+Multiple steps using a range of other tools ‘plumbed-in’.
+
+Analysis:
+Analyse & quantify data: 
+Create outputs (including for quality-control, further analysis)
+
+Ingolia NT, Ghaemmaghami S, Newman JR, Weissman JS (2009). "Genome-wide analysis in vivo of translation with nucleotide resolution using ribosome profiling". Science. 324 (5924): 218–23. doi:10.1126/science.1168978
 
 </div>
 
