@@ -81,16 +81,33 @@ Source: [tl;drLegal](https://tldrlegal.com/license/mit-license)
 
 # *Putting the 'viz' back into 'riboviz':* connecting Rmarkdown, Shiny and Nextflow  
 
-## Who Am I?
+## Me!
 
-* Research Assistant in Bioinformatics at Wallace Lab, Institute for Cell Biology, University of Edinburgh
-* developer on riboviz team  
-* Edinburgh Carpentries instructor (foundational data & software carpentry coding courses)
-* background mainly in R, have picked up other bits & bobs lately 
-* this is my first project coding with others & using 'best practices' (code review, style guides, documentation!)
+<div style="float: left; width: 30%;">
+```{r, out.width = "300"}
+knitr::include_graphics("https://raw.githubusercontent.com/FlicAnderson/EdinbR-20210519/main/images/Me.jpg")
+```  
 
-<div class="notes">
-...
+[GitHub](https://github.com/FlicAnderson), [Twitter](https://twitter.com/Flic_Anderson), [LinkedIn](https://www.linkedin.com/in/flicanderson/)
+</div>
+
+<div style="float: right; width: 55%;">
+### Felicity 'Flic' Anderson  
+
+**Research Assistant in Bioinformatics** at the [Wallace Lab](https://ewallace.github.io/), Institute for Cell Biology, University of Edinburgh  
+
+* **developer** on riboviz project  - _my first project coding in a team_ 
+* certified **Carpentries instructor** (foundational data, software & coding courses)
+* background mainly in **R**, some SQL & Bash, new-ish to Python
+</div>
+
+<div class="notes"> 
+
+https://raw.githubusercontent.com/FlicAnderson/EdinbR-20210519/main/images/Me.jpg
+
+https://ewallace.github.io/ - Wallace lab website
+
+https://edcarp.github.io/ - Edinburgh Carpentries, local chapter of The Carpentries organisation (https://carpentries.org/)
 </div>
 
 # Outline: 
