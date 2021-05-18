@@ -109,17 +109,31 @@ Source: [tl;drLegal](https://tldrlegal.com/license/mit-license)
 
 # Intro:
 
-## RiboViz
+## Riboviz
 
-**Riboviz is open source software which processes & analyses ribosome profiling data**  
+**Riboviz is open source software which processes & analyses ribosome profiling (sequencing) data**  
 
-Developed in collaborative project BBSRC-NSF funded project involving: University of Edinburgh, EPCC, Rutgers University and University of California, Berkeley. 
+*Developed in collaborative project BBSRC-NSF funded project involving:* University of Edinburgh, EPCC, Rutgers University and University of California, Berkeley. 
 
-Ribosome profiling data helps unlock details of **translation**: the process by which proteins are created from genetic code (DNA, RNA) in the cell.
+Ribosome profiling data helps unlock details of **translation**:   
+_how the cell creates proteins from genetic code (DNA, RNA)._ 
+
+riboviz helps researchers check **quality control** & understand the **characteristics** of the experimental data - ie. _do different experimental conditions change how the cell translates proteins from genes?_
+
+<font size="2">riboviz at github: https://github.com/riboviz/riboviz</font>
+
+<div class="notes">
+...
+</div>
+
+
+## Riboviz
 
 Developing/improving riboviz software = **more researcher time** for biological questions
 
-Robust & reliable code 
+_More biological code, less programming code!_
+
+The project's aims are to apply software engineering techniques to create more robust & reliable code:
 
 <font size="2">riboviz at github: https://github.com/riboviz/riboviz</font>
 
@@ -131,81 +145,29 @@ Robust & reliable code gives more confidence in results
 
 </div>
 
-## Features of Ribosome Profiling Data
+## Ribosome Profiling Method 
 
-* Looking for **3-nucleotide periodicity**: ribosomes moving along mRNA transcript 1 codon (3 nucleotides) at a time  
-
-* Most reads **map to coding regions** (98.8% in Ingolia et al. 2009)  
-* Reasonable read-lengths (e.g. should look for **~28-30NT**)  
-
-* Looking for most reads to be **in one frame**  
-
-
-<font size="2">Ingolia et al. 2009 - "Genome-wide analysis in vivo of translation with nucleotide resolution using ribosome profiling", doi: 10.1126/science.1168978</font>
-
-<div class="notes">
-
-Ingolia et al. 2009 - Science 324(5924):218-23 "Genome-wide analysis in vivo of translation with nucleotide resolution using ribosome profiling", doi: 10.1126/science.1168978.
-
-28-30NT due to the 'width' of the ribosome as this is what 'protected' the mRNA from the nucleases in the experiment's library preparation steps.
-
-</div>
-
-## RPF Data & Reading Frame 
-
-
-<div class="centered">
-```{r, out.width = "700"}
-knitr::include_graphics("https://raw.githubusercontent.com/FlicAnderson/LabTalk-riboviz-20210510/main/images/riboviz-output_frame.png")
-``` 
-</div>
-
-Many of riboviz's output plots let us examine these features.  
-
-
-<font size="2">Reading Frame: https://www.ncbi.nlm.nih.gov/Class/MLACourse/Original8Hour/Genetics/readingframe.html; Data: Guydosh & Green (2014). doi: 10.1016/j.cell.2014.02.006.</font>
-
-
-<div class="notes">
-
-Ribosome profiling data is really useful for investigating translational mechanics particularly because of the information it provides about the active open reading frame!
-
-Because a codon is 3 nucleotides, where a ribosome 'starts' reading the mRNA will affect what's translated. 
-
-Can locate the start codon ‘AUG’ (from annotation position information from a .gff or sequence info) & determine what should be the reading frame based on that. 
-
-Can determine which reading frame(s) are being actively translated from the counts of reads sequenced which match each frame. Can look at if this is altered by particular characteristics of the gene or sequence for example.
-
-Outputs like these help users determine whether the data looks as expected (assists QC).  
-
-Data: Guydosh & Green (2014). “Dom34 rescues ribosomes in 3' untranslated regions.” Cell. 156 (5): 950-62. doi: 10.1016/j.cell.2014.02.006.   
-
-</div>
-
-
-
-
-## Ribosome Profiling Method
-
-<div class="centered">
-```{r, out.width = "650"}
-knitr::include_graphics("https://raw.githubusercontent.com/FlicAnderson/LabTalk-riboviz-20210510/main/images/Ingolia2014_polysomes-to-footprints.png")
-``` 
-</div>
+<div style="float: left; width: 70%;">
+```{r, out.width = "525"}
+knitr::include_graphics("https://raw.githubusercontent.com/FlicAnderson/EdinbR-20210519/main/images/Ingolia2014_polysomes-to-footprints.png")
+```
 <font size="2">Ingolia et al. 2009</font>
+</div>
+
+<div style="float: right; width: 30%;">
++ Experimental steps create snippets of **sequence data**
++ Need to **process** sequence reads to 'undo' the experimental steps 
++ **Analyse** to get plots & information
++  **=> riboviz time!**
+</div>
 
 <div class="notes">
 
-Ribosome Profiling Method:
-Lyse the cells to get at the mRNA molecules bound to ribosomes.  
-'Stop' the translation process: e.g. with cycloheximide or other means   
-Digest the non-protected RNA using a nuclease  
-Strip away the ribosomes and proteins  
-Size-select for these previously 'masked' fragments of mRNA  
-Add adapters  
-Reverse-transcribe to complimentary DNA  
-Amplify  
-Sequence   
+Ribosome Profiling Method involves many experimental steps. 
+
+Processing this data involves effectively trying to 'undo' these steps to get at the meaning of what's happening in those cells.
+
+Sequencing 'reads' are the data we're working with.
 
 Take these reads & submit to further processing & analysis to get plots & information.
 
@@ -970,6 +932,59 @@ Can be tricky to get your head around - another thing you 'have' to learn before
 If you realise you're spending more time on managing 'task admin' in your development than on research-focused features, you need a WfMS!
 
 </div>
+
+
+## Features of Ribosome Profiling Data
+
+* Looking for **3-nucleotide periodicity**: ribosomes moving along mRNA transcript 1 codon (3 nucleotides) at a time  
+
+* Most reads **map to coding regions** (98.8% in Ingolia et al. 2009)  
+* Reasonable read-lengths (e.g. should look for **~28-30NT**)  
+
+* Looking for most reads to be **in one frame**  
+
+
+<font size="2">Ingolia et al. 2009 - "Genome-wide analysis in vivo of translation with nucleotide resolution using ribosome profiling", doi: 10.1126/science.1168978</font>
+
+<div class="notes">
+
+Ingolia et al. 2009 - Science 324(5924):218-23 "Genome-wide analysis in vivo of translation with nucleotide resolution using ribosome profiling", doi: 10.1126/science.1168978.
+
+28-30NT due to the 'width' of the ribosome as this is what 'protected' the mRNA from the nucleases in the experiment's library preparation steps.
+
+</div>
+
+## RPF Data & Reading Frame 
+
+
+<div class="centered">
+```{r, out.width = "700"}
+knitr::include_graphics("https://raw.githubusercontent.com/FlicAnderson/LabTalk-riboviz-20210510/main/images/riboviz-output_frame.png")
+``` 
+</div>
+
+Many of riboviz's output plots let us examine these features.  
+
+
+<font size="2">Reading Frame: https://www.ncbi.nlm.nih.gov/Class/MLACourse/Original8Hour/Genetics/readingframe.html; Data: Guydosh & Green (2014). doi: 10.1016/j.cell.2014.02.006.</font>
+
+
+<div class="notes">
+
+Ribosome profiling data is really useful for investigating translational mechanics particularly because of the information it provides about the active open reading frame!
+
+Because a codon is 3 nucleotides, where a ribosome 'starts' reading the mRNA will affect what's translated. 
+
+Can locate the start codon ‘AUG’ (from annotation position information from a .gff or sequence info) & determine what should be the reading frame based on that. 
+
+Can determine which reading frame(s) are being actively translated from the counts of reads sequenced which match each frame. Can look at if this is altered by particular characteristics of the gene or sequence for example.
+
+Outputs like these help users determine whether the data looks as expected (assists QC).  
+
+Data: Guydosh & Green (2014). “Dom34 rescues ribosomes in 3' untranslated regions.” Cell. 156 (5): 950-62. doi: 10.1016/j.cell.2014.02.006.   
+
+</div>
+
 
 
 
