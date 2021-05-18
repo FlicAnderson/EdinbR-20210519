@@ -1,7 +1,7 @@
 ---
 title: "Putting the 'viz' back into 'riboviz': connecting Rmarkdown, Shiny and Nextflow"
 author: "Flic Anderson"
-date: "10/05/2021"
+date: "19/05/2021"
 output: 
   ioslides_presentation
 ---
@@ -102,9 +102,9 @@ Source: [tl;drLegal](https://tldrlegal.com/license/mit-license)
 * Nextflow in a nutshell  
 * Rmarkdown and out...(puts)  
 * the aim: HTML output for samples
-* what I tried (aka )
+* what I tried (aka the looping horror)
 * what actually worked... 
-* what next? 
+* and next, make it Shiny!
 * (other) questions?
 
 # Intro:
@@ -684,6 +684,7 @@ Same as .pdf version previously output, but now have it clearly associated w/ pr
 
 </div>  
 
+# Next, Make the Outputs Shiny
 
 ## Shiny
 
@@ -691,10 +692,14 @@ Same as .pdf version previously output, but now have it clearly associated w/ pr
 
 * Rutgers team have developed **Shiny** code which can generate **interactive plots** (with user value inputs or sample selections) 
 
+* {Shiny} package lets you build interactive web apps using R
+
 * _Shiny code can't be run as part of a Nextflow workflow_ - kicks up a 'server' that prevents processes completing
 
 * Adapting riboviz to generate a **'helper script'**:  
   - lets users generate the Shiny run command with _correct inputs & file paths_ added-in from Nextflow  
+
+<font size=2>R shiny: https://shiny.rstudio.com/</font>
 
 <div class="notes">
 
