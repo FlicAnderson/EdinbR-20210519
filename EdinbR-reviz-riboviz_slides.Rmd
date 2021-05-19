@@ -242,7 +242,7 @@ As part of making riboviz more user-friendly, wanted to generate a per-sample .h
 
 Workflow Management Systems (WfMS) provide infrastructure to set up, run & monitor a defined set of tasks (processes). 
 
- * **run time management** (the infrastructure supporting task management & execution)
+ * **run time management** (the infrastructure supporting task management & execution) & **parallelism**
 
  * **portability / reproducibility** (same results, different machines)  
 
@@ -307,10 +307,9 @@ Think of a script which runs lots of separate functions to do different data ana
 
 ## Nextflow
 
-Lots of Workflow Management System Benefits: 
+Lots of Workflow Management System Benefits, including: 
 
-* **parallelism** -processes are run as soon as their required input is there - no hanging around for unrelated tasks to finish! 
-* **portable** - can run a pipeline on local computer vs compute cluster without tweaking it  
+* tasks split up efficiently & run based on **availability of inputs** - no waiting for unrelated tasks!  
 * **resume option** - lets you re-run the pipeline from the last successful point if it stops ("re-entrancy")  
 * **simple syntax** so you can re-use existing scripts
 * you can use **containerisation** (such as docker/singularity) and **conda** to bundle and/or manage your software
