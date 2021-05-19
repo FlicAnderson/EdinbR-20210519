@@ -597,21 +597,18 @@ process staticHTML {
 ```{r, out.width = "1000"}
 knitr::include_graphics("https://raw.githubusercontent.com/FlicAnderson/LabTalk-riboviz-20210510/main/images/rmarkdown_final-yaml.png")
 ``` 
-</div>  
+</div> 
+<font size=2> 
+Yaml header section:  
+Line 5: specify document type (HTML); Line 6-9: table of contents  
+Line 10: tells .Rmd which parameters to expect, and gives default values for each parameter  </font>
 
-<div class="centered">
-```{r, out.width = "1000"}
-knitr::include_graphics("https://raw.githubusercontent.com/FlicAnderson/LabTalk-riboviz-20210510/main/images/rmarkdown_final-read-yaml.png")
-``` 
-</div>  
 
 <div class="notes">
 
-Line 5: specify document type (HTML)  
+Line 5: specify document type (HTML) ;   
 Line 6-9: table of contents  
 Line 10: tells .Rmd which parameters to expect, and gives default values for each parameter  
-
-Line 38: using {yaml} package, read contents of the config yaml file into yaml object; using 'params$' notation to pull this parameter info from what was fed into the .Rmd during the rmarkdown::render() command
 
 </div>
 
@@ -623,7 +620,6 @@ Line 38: using {yaml} package, read contents of the config yaml file into yaml o
 knitr::include_graphics("https://raw.githubusercontent.com/FlicAnderson/LabTalk-riboviz-20210510/main/images/rmarkdown_final-load-tsv.png")
 ``` 
 </div>  
-
 <div class="centered">
 ```{r, out.width = "1000"}
 knitr::include_graphics("https://raw.githubusercontent.com/FlicAnderson/LabTalk-riboviz-20210510/main/images/rmarkdown_final-plot.png")
@@ -666,11 +662,11 @@ Same as .pdf version previously output, but now have it clearly associated w/ pr
 
 * HTML output pages are **static** - they don't move or update  
 
-* Rutgers team have developed **Shiny** code which can generate **interactive plots** (with user value inputs or sample selections) 
+* Rutgers team have developed **Shiny** code which can generate **interactive plots** (user can select samples & plots to view) 
 
 * {Shiny} package lets you build interactive web apps using R
 
-* _Shiny code can't be run as part of a Nextflow workflow_ - kicks up a 'server' that prevents processes completing
+* _Shiny code can't be run as part of a Nextflow workflow_ - kicks up 'server' that prevents processes completing
 
 * Adapting riboviz to generate a **'helper script'**:  
   - lets users generate the Shiny run command with _correct inputs & file paths_ added-in from Nextflow  
@@ -694,23 +690,23 @@ knitr::include_graphics("https://raw.githubusercontent.com/FlicAnderson/EdinbR-2
 </div> 
 
 <font size="2">
-Line 1221-1223: builds 'script' from: Rscript command (to run R script in commandline), shiny R script & config file   
-Line 1225: puts the script command (with correct paths) into new file 'interactive_viz.sh'  
+Line 1240-1242: builds 'script' from: Rscript command (to run R script in commandline), shiny R script & config file   
+Line 1244: puts the script command (with correct paths) into new file 'interactive_viz.sh'  
 </font>
 
 <div class="notes">
 
-Line 1214: starts the Nextflow process definition  
+Line 1233: starts the Nextflow process definition  
 
-Line 1215: sets output location for files 
+Line 1234: sets output location for files 
 
-Line 1217: list input file (currently just config yaml)
+Line 1236: list input file (currently just config yaml)
 
-Line 1219: tells Nextflow what the outputs of this process are (1x shell script file )  
+Line 1238: tells Nextflow what the outputs of this process are (1x shell script file)  
 
-Line 1221-1223: builds 'script' from: Rscript command (to run R script in commandline), shiny R script, config file 
+Line 1240-1242: builds 'script' from: Rscript command (to run R script in commandline), shiny R script, config file 
 
-Line 1225: actually executes the script (runs the echo command to put the script with correct parameters into new file 'interactive_viz.sh') 
+Line 1244: actually executes the script (runs the echo command to put the script with correct parameters into new file 'interactive_viz.sh') 
 
 </div>
 
@@ -966,30 +962,6 @@ Storing data in really efficient .h5 format (hierarchical, like a file system w/
 
 </div>
 
-
-## Takeaway for lab folks:  
-
-**WfMS are good** and reduce admin-related development!  
-
-_But if you're not building really complex stacks of code, think smaller:_ 
-
-Can get many of the same benefits (increased **reproducibility**, **ease of use**, **shareability**) with **scripts** if you're not already using one. 
-
-* **Rmarkdown documents** for data exploration and analysis are great!  
-  - load your libraries & data (include **what & where**)  
-  - **make plots & notes in the same place**  
-  - explore output types available
-
-
-<div class="notes">  
-
-Tips for getting your code to work on your colleague's system! 
- - version control!
- - remember which packages/software are required & may need to be installed 
- - use package::function() in R :) 
- - dependencies might still sink you, but there is hope (containerisation, rEnv, being specific about which version of everything YOU used etc)  
- - be clear about file management (where do you expect the data files to be saved? did you write that down?)
-</div>
 
 ## Features of Ribosome Profiling Data
 
