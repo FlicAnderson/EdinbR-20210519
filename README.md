@@ -4,7 +4,9 @@
 
 # *Putting the 'viz' back into 'riboviz':* connecting Rmarkdown, Shiny and Nextflow
 
-Presentation \& Materials for EdinbR Talk 19th May 2021 on Riboviz
+Presentation \& Materials for EdinbR Talk 19th May 2021 on Riboviz (Event details: https://www.meetup.com/EdinbR/events/278094996/)
+
+Available to view on EdinbR YouTube channel: **[watch the talk on YouTube](https://youtu.be/2C_WpraLznc?t=1596)**
 
 ### Talk Abstract:  
 
